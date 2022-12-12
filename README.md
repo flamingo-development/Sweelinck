@@ -1,38 +1,31 @@
-# create-svelte
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+# Sweelinck
+Named after the dutch composer [Jan Pieterszoon Sweelinck](https://en.wikipedia.org/wiki/Jan_Pieterszoon_Sweelinck). This is a small web app that is created to learn the notes on sheet music easily.
 
-## Creating a project
+It does this by listening to the microphone and showing the note that is played.
+It will give you a note to play and checks if you played the right note.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Installation
+
+### yarn
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+yarn
+yarn run dev
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+### npm
 ```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
-
+### Docker (compose)
 ```bash
-npm run build
+docker-compose up --build
 ```
 
-You can preview the production build with `npm run preview`.
+## Uses
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+ - [Themes](https://github.com/hundredrabbits/Themes) for easy color themes
+ - [PitchDetect](https://github.com/cwilso/PitchDetect/blob/main/js/pitchdetect.js#L287) for note detection
