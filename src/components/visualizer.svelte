@@ -33,30 +33,25 @@ const minimizeBuffer = (_buffer) => {
 
 </script>
 
-<div>
-    <svg 
-        viewBox={`0 0 300 200`}
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        {#each buffer as line, i}
-            <path 
-                d={`M ${getX(i)} ${height / 2} L ${getX(i)} ${getY(line)}`}
-                class="f_med"
-                stroke-linecap="round"
-            />
-        {/each}
-    </svg>
-</div>
+<svg 
+viewBox={`0 0 300 200`}
+xmlns="http://www.w3.org/2000/svg"
+>
+    {#each buffer as line, i}
+        <path 
+            d={`M ${getX(i)} ${height / 2} L ${getX(i)} ${getY(line)}`}
+            class="f_med"
+            stroke-linecap="round"
+        />
+    {/each}
+</svg>
 
 <style>
-    path {
-        stroke-width: 5px;
-    }
+svg {
+    width: 80%;
+}
 
-    div {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+path {
+    stroke-width: 5px;
+}
 </style>

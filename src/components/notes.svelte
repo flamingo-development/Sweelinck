@@ -3,6 +3,7 @@
 export let updateNote = () => {};
 
 const bufferLength = 2048;
+const C0 = 16.35;
 
 export const start = async () => {
     const audioContext = new AudioContext();
@@ -119,6 +120,7 @@ const loop = (audioContext, analyser) => {
             let pitch = ac;
             let note = noteFromPitch(pitch);
             let detune = centsOffFromPitch(pitch, note);
+            let octave = Math.floor(Math.log2(pitch / C0));
 
             let noteName = noteStrings[note % 12];
             updateNote({
@@ -126,6 +128,7 @@ const loop = (audioContext, analyser) => {
                 note: noteName,
                 detune: detune,
                 buffer: buffer,
+                octave: octave,
             });
         }else{
             updateNote({
@@ -133,6 +136,7 @@ const loop = (audioContext, analyser) => {
                 note: "-",
                 detune: 0,
                 buffer: buffer,
+                octave: 0,
             });
         }
 

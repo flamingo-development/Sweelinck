@@ -4,11 +4,6 @@ import { onMount } from "svelte";
 
 let note;
 
-const symbols = {
-    melody: "𝄞",
-    note: "♩"
-}
-
 export const updateNoteBar = (_note) => {
     note = _note;
 }
@@ -22,7 +17,7 @@ onMount(() => {
     }
 })
 
-const heightOffset = 5
+const heightOffset = 40
 const heights = [
     60,
     80,
@@ -79,7 +74,7 @@ const closestPitchHeight = (pitch) => {
 
 const getNoteHeight = (note) => {
     if (!note || note.note == "-") {
-        return -100;
+        return -(1000 + heightOffset);
     }
 
     const pitch = note.pitch;
@@ -123,87 +118,56 @@ const helperBars = (note) => {
 </script>
 
 
-<div>
-    <div id="note">
-        <h1>
-            {note ? note.note : "-"}
-        </h1>
-    </div>
-    <div id="bar">
-        <h1>
-            {symbols.melody}
-        </h1>
-        <svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
-            {#each heights as height}
-                <line 
-                    x1="5" 
-                    y1="{height + heightOffset}" 
-                    x2="95" 
-                    y2="{height + heightOffset}" 
-                    class="f_med" 
-                    stroke-linecap="round"
-                />
-            {/each}
-            {#each helperBars(note) as height}
-            <line 
-                x1="35" 
-                y1="{height + heightOffset}" 
-                x2="65" 
-                y2="{height + heightOffset}" 
-                class="f_med" 
-                stroke-linecap="round"
-            />
-            {/each}
-            <text
-                x="0"
-                y="0"
-                style={`translate: ${(getNoteHeight(note) < 100 ? 70 : 30)}px ${getNoteHeight(note) + (heightOffset * 2)}px`}
-                class={`b_inv ${getNoteHeight(note) < 100 ? 'upper' : ''}`}
-            >
-                {symbols.note}
-            </text>
-        </svg>
-    </div>
-</div>
+<svg id="bar" viewBox="0 0 180 300" xmlns="http://www.w3.org/2000/svg">
+    <use 
+        href="/symbols.svg#g_clef" 
+        x="0"
+        y={4 + heightOffset}
+        transform="scale(1.8)"
+        class="b_inv"
+    />
+    {#each heights as height}
+        <line 
+            x1="70" 
+            y1="{height + heightOffset}" 
+            x2="165" 
+            y2="{height + heightOffset}" 
+            class="f_low" 
+            stroke-linecap="round"
+        />
+    {/each}
+    {#each helperBars(note) as height}
+    <line 
+        x1="105" 
+        y1="{height + heightOffset}" 
+        x2="135" 
+        y2="{height + heightOffset}" 
+        class="f_low" 
+        stroke-linecap="round"
+    />
+    {/each}
+    <use
+        href="/symbols.svg#quarter_note"
+        x="70"
+        y="0"
+        transform="scale(1.2)"
+        transform-origin="0px 240px"
+        style={`translate: ${(getNoteHeight(note) < 100 ? 100 : 25)}px ${getNoteHeight(note) + (heightOffset) + 5}px`}
+        class={`b_inv ${getNoteHeight(note) < 100 ? 'upper' : ''}`}
+    />
+</svg>
 
 <style>
-#bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#bar h1 {
-    font-size: 5rem;
-    margin: 0;
-    padding: 0;
-    margin-left: 10px;
-    padding-top: 20px;
-}
-
-#note h1 {
-    font-size: 3rem;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    margin-left: 10px;
-}
-
-#bar svg {
-    width: 100%;
-    height: 200px;
+svg {
+    width: 20%;
 }
 
 line {
     stroke-width: 3px;
 }
 
-text {
-    font-size: 4rem;
-}
-
-text.upper {
-    transform-origin: 50px 4.5px;
+.upper {
+    transform-origin: 49px 15px;
     transform: rotate(180deg);
 }
 </style>

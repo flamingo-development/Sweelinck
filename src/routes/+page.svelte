@@ -2,28 +2,40 @@
 <script>
 import Bar from '../components/bar.svelte';
 import Button from '../components/button.svelte';
+  import Information from '../components/information.svelte';
 import Notes from '../components/notes.svelte';
 import Visualizer from '../components/visualizer.svelte';
 
 let startNoteDetection;
 let updateBuffer;
 let updateNoteBar;
+let updateNoteInfo;
 
-const updateNote = (note) => {
-    updateBuffer(note.buffer);
-    updateNoteBar(note);
+const updateNote = (_note) => {
+    updateBuffer(_note.buffer);
+    updateNoteBar(_note);
+    updateNoteInfo(_note);
 }
+
+const start = () => {
+    startNoteDetection();
+    started = true;
+}
+
+let started = false;
 
 </script>
 
 <Notes bind:start={startNoteDetection} updateNote={updateNote} />
-
-<Button on:click={startNoteDetection}>
-    Start
-</Button>
-
-
 <main>
+    <div>
+        {#if !started}
+            <Button on:click={start}>
+                Start
+            </Button>
+        {/if}
+        <Information bind:updateNoteInfo={updateNoteInfo} />
+    </div>
     <div>
         <Visualizer 
             bind:updateBuffer={updateBuffer} 
@@ -34,13 +46,15 @@ const updateNote = (note) => {
 
 <style>
     main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 100%;
+        height: 100%;
     }
 
     div {
         display: flex;
-        width: 80%;
+        width: 50%;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
     }
 </style>
