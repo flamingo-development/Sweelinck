@@ -1,7 +1,6 @@
 
 <script>
-  import Detune from "./detune.svelte";
-
+import Detune from "./detune.svelte";
 
 let updateDetune;
 let note;
