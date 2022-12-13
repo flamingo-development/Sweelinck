@@ -1,10 +1,15 @@
 
 <script>
+  import Detune from "./detune.svelte";
 
+
+let updateDetune;
 let note;
 
 export const updateNoteInfo = (_note) => {
     note = _note;
+    if(updateDetune)
+        updateDetune(note.detune);
 }
 
 let isOpen = false;
@@ -24,7 +29,11 @@ let isOpen = false;
             </tr>
             <tr>
                 <td>Detune</td>
-                <td>{note.detune}</td>
+                <td>
+                    <Detune 
+                        bind:updateDetune={updateDetune}
+                    />
+                </td>
             </tr>
         </table>
     {/if}

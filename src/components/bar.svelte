@@ -125,6 +125,7 @@ const helperBars = (note) => {
         y={4 + heightOffset}
         transform="scale(1.8)"
         class="b_inv"
+        fill="none"
     />
     {#each heights as height}
         <line 
