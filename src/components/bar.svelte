@@ -162,6 +162,12 @@ svg {
     width: 20%;
 }
 
+@media (max-width: 768px) {
+    svg {
+        width: 50%;
+    }
+}
+
 line {
     stroke-width: 3px;
 }

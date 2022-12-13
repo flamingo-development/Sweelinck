@@ -28,7 +28,7 @@ let started = false;
 
 <Notes bind:start={startNoteDetection} updateNote={updateNote} />
 <main>
-    <div>
+    <div id="controls">
         {#if !started}
             <Button on:click={start}>
                 Start
@@ -36,7 +36,7 @@ let started = false;
         {/if}
         <Information bind:updateNoteInfo={updateNoteInfo} />
     </div>
-    <div>
+    <div id="visuals">
         <Visualizer 
             bind:updateBuffer={updateBuffer} 
         />
@@ -45,16 +45,34 @@ let started = false;
 </main>
 
 <style>
-    main {
+main {
+    width: 100%;
+    height: 100%;
+}
+
+#controls {
+    width: 50%;
+    margin: auto;
+}
+
+#visuals {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    #controls {
         width: 100%;
-        height: 100%;
     }
 
-    div {
-        display: flex;
-        width: 50%;
-        margin: auto;
-        justify-content: center;
-        align-items: center;
+    #visuals{
+        width: 100%;
+        display: block;
+        text-align: center;
     }
+}
+
 </style>

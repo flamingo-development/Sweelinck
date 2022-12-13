@@ -51,6 +51,12 @@ svg {
     width: 80%;
 }
 
+@media (max-width: 768px) {
+    svg {
+        width: 100%;
+    }
+}
+
 path {
     stroke-width: 5px;
 }
