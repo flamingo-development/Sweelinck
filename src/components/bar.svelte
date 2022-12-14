@@ -127,6 +127,7 @@ const helperBars = (note) => {
 <style>
 svg {
     width: 20%;
+    overflow: visible;
 }
 
 @media (max-width: 768px) {

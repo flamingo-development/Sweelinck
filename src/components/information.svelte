@@ -20,7 +20,10 @@ let isOpen = false;
         <table>
             <tr>
                 <td>Note</td>
-                <td>{note.note} {note.octave}</td>
+                <td id="note">
+                    <span>{note.note}</span>
+                    <span>{note.octave}</span>
+                </td>
             </tr>
             <tr>
                 <td>Pitch</td>
@@ -37,3 +40,10 @@ let isOpen = false;
         </table>
     {/if}
 </div>
+
+<style>
+#note {
+    display: flex;
+    justify-content: space-between;
+}
+</style>
