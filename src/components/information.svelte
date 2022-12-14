@@ -27,7 +27,7 @@ let isOpen = false;
             </tr>
             <tr>
                 <td>Pitch</td>
-                <td>{note.pitch.toFixed(2)} Hz</td>
+                <td id="hz">{note.pitch.toFixed(2)} Hz</td>
             </tr>
             <tr>
                 <td>Detune</td>
@@ -45,5 +45,9 @@ let isOpen = false;
 #note {
     display: flex;
     justify-content: space-between;
+}
+
+#hz {
+    text-align: right;
 }
 </style>

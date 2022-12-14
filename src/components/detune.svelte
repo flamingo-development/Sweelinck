@@ -14,7 +14,7 @@ export const updateDetune = (_detune) => {
     console.log(detune_avg);
 }
 
-const width = 100;
+const width = 150;
 const height = 14;
 const strokeWidth = 2;
 $: radius = (height - strokeWidth)/2;
