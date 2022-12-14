@@ -26,59 +26,25 @@ const heights = [
     140,
 ]
 
-//Based on 440 hz: https://pages.mtu.edu/~suits/notefreqs.html
-const pitches = {
-    246.94: 200, // B3
-    261.63: 190, // C4
-    277.18: 180, // C#4
-    293.66: 170, // D4
-    311.13: 160, // D#4
-    329.63: 150, // E4
-    349.23: 140, // F4
-    369.99: 130, // F#4
-    392: 120, // G4
-    415.30: 110, // G#4
-    440: 100, // A4
-    466.16: 90, // A#4
-    493.88: 80, // B4
-    523.25: 70, // C5
-    554.37: 60, // C#5
-    587.33: 50, // D5
-    622.25: 40, // D#5
-    659.25: 30, // E5
-    698.46: 20, // F5
-    739.99: 10, // F#5
-    783.99: 0, // G5
-    830.61: -10, // G#5
-    880: -20, // A5
-    932.33: -30, // A#5
-    987.77: -40, // B5
-    1046.50: -50, // C6
-    1108.73: -60, // C#6
-    1174.66: -70, // D6
-    1244.51: -80, // D#6
-    1318.51: -90, // E6
+const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+const G4 = {
+    note: "G",
+    octave: 4,
+    height: 120,
 }
 
-const closestPitchHeight = (pitch) => {
-    const pitchesArray = Object.keys(pitches).map((key) => {
-        return parseFloat(key);
-    });
-
-    const closestPitch = pitchesArray.reduce((prev, curr) => {
-        return (Math.abs(curr - pitch) < Math.abs(prev - pitch) ? curr : prev);
-    });
-
-    return pitches[closestPitch];
-}
+const G4_index = noteStrings.indexOf(G4.note) + (G4.octave * 12);
+const NoteStart = G4.height + (G4_index * 10);
 
 const getNoteHeight = (note) => {
     if (!note || note.note == "-") {
         return -(1000 + heightOffset);
     }
 
-    const pitch = note.pitch;
-    const height = closestPitchHeight(pitch);
+    const noteIndex = noteStrings.indexOf(note.note);
+    const octave = note.octave;
+    const height = NoteStart - ((noteIndex * 10) + (octave * 120));
 
     return height;
 }

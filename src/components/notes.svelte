@@ -94,7 +94,7 @@ const autoCorrelate = (buffer, sampleRate) => {
     return sampleRate / T0;
 }
 
-var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
 const noteFromPitch = (frequency) => {
     let noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
