@@ -1,12 +1,9 @@
 
 <script>
 import { onMount } from "svelte";
+import Event from "../events/event.svelte"
 
 let note;
-
-export const updateNoteBar = (_note) => {
-    note = _note;
-}
 
 onMount(() => {
     window.TestFrequency = (hz) => {
@@ -83,6 +80,8 @@ const helperBars = (note) => {
 
 </script>
 
+
+<Event on:note={(e) => note = e} />
 
 <svg id="bar" viewBox="0 0 180 300" xmlns="http://www.w3.org/2000/svg">
     <use 

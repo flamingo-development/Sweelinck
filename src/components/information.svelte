@@ -1,19 +1,13 @@
 
 <script>
 import Detune from "./detune.svelte";
+import Event from "../events/event.svelte"
 
-let updateDetune;
 let note;
 
-export const updateNoteInfo = (_note) => {
-    note = _note;
-    if(updateDetune)
-        updateDetune(note.detune);
-}
-
-let isOpen = false;
-
 </script>
+
+<Event on:note={(e) => note = e} />
 
 <div>
     {#if note}
@@ -32,9 +26,7 @@ let isOpen = false;
             <tr>
                 <td>Detune</td>
                 <td>
-                    <Detune 
-                        bind:updateDetune={updateDetune}
-                    />
+                    <Detune />
                 </td>
             </tr>
         </table>

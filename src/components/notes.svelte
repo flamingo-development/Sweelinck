@@ -1,6 +1,10 @@
 <script>
+import { onMount } from "svelte";
+import { dispatch } from "../events/event.svelte";
 
-export let updateNote = () => {};
+onMount(() => {
+    start()
+})
 
 const bufferLength = 2048;
 const C0 = 16.35;
@@ -109,6 +113,18 @@ function centsOffFromPitch( frequency, note ) {
 	return Math.floor( 1200 * Math.log( frequency / frequencyFromNoteNumber( note ))/Math.log(2) );
 }
 
+const dispatchNote = (note) => {
+    const defaults = {
+        pitch: 0,
+        note: "-",
+        detune: 0,
+        buffer: [],
+        octave: 0,
+    }
+
+    dispatch('note', Object.assign(defaults, note))
+}
+
 const loop = (audioContext, analyser) => {
     const buffer = new Float32Array(bufferLength);
 
@@ -123,7 +139,7 @@ const loop = (audioContext, analyser) => {
             let octave = Math.floor(Math.log2(pitch / C0));
 
             let noteName = noteStrings[note % 12];
-            updateNote({
+            dispatchNote({
                 pitch: pitch,
                 note: noteName,
                 detune: detune,
@@ -131,12 +147,8 @@ const loop = (audioContext, analyser) => {
                 octave: octave,
             });
         }else{
-            updateNote({
-                pitch: 0,
-                note: "-",
-                detune: 0,
+            dispatchNote({
                 buffer: buffer,
-                octave: 0,
             });
         }
 

@@ -1,17 +1,19 @@
 
 <script>
+import Event from "../events/event.svelte"
 
 const detune_avg_count = 10;
 let detune = [];
 let detune_avg = 0;
 
-export const updateDetune = (_detune) => {
+export const updateDetune = (note) => {
+    const _detune = note.detune;
+
     detune.push(_detune);
     if(detune.length > detune_avg_count) {
         detune.shift();
     }
     detune_avg = detune.reduce((a, b) => a + b, 0) / detune.length;
-    console.log(detune_avg);
 }
 
 const width = 150;
@@ -29,6 +31,8 @@ const getDetune = (x) => {
 }
 
 </script>
+
+<Event on:note={updateDetune} />
 
 <svg
     width={width}

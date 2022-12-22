@@ -1,14 +1,11 @@
 
 <script>
 import { onMount } from 'svelte';
+import Event from '../events/event.svelte'
 
 const bufferMinimizeFactor = 32;
 const frequencyMultiplier = 2
 $: buffer = [];
-
-export const updateBuffer = (_buffer) => {
-    minimizeBuffer(_buffer);
-}
 
 export const width = ((2048 / bufferMinimizeFactor) * 5) + 20;
 export const height = 200;
@@ -32,6 +29,8 @@ const minimizeBuffer = (_buffer) => {
 }
 
 </script>
+
+<Event on:note={(e) => minimizeBuffer(e.buffer)} />
 
 <svg 
 viewBox={`0 0 300 200`}
