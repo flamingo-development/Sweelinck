@@ -4,8 +4,8 @@ import Bar from '../components/bar.svelte';
 import Button from '../components/button.svelte';
 import Information from '../components/information.svelte';
 import Notes from '../components/notes.svelte';
+import ThemePicker from '../components/theme_picker.svelte';
 import Visualizer from '../components/visualizer.svelte';
-import Event from "../events/event.svelte"
 
 const start = () => {
     started = true;
@@ -31,6 +31,7 @@ let started = false;
         <Visualizer />
         <Bar />
     </div>
+    <ThemePicker />
 </main>
 
 <style>
