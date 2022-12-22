@@ -52,8 +52,8 @@ select {
     bottom: 5px;
     left: 5px;
     border: 0px;
-    background: var(--b_high);
-    color: var(--f_high);
+    background-color: var(--b_med);
+    color: var(--f_med);
     padding: 8px 12px;
     line-height: 1.1;
     border-radius: 10px;
@@ -66,7 +66,7 @@ select {
 }
 
 select:hover {
-    background: var(--b_inv);
-    color: var(--f_inv);
+    background-color: var(--b_inv);
+    color: var(--b_low);
 }
 </style>

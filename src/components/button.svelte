@@ -12,6 +12,7 @@
         border-radius: 10px;
         cursor: pointer;
         background-color: var(--b_med);
+        color: var(--f_med);
     }
 
     div:hover {
