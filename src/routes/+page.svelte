@@ -4,6 +4,7 @@ import Bar from '../components/bar.svelte';
 import Button from '../components/button.svelte';
 import Information from '../components/information.svelte';
 import Notes from '../components/notes.svelte';
+  import Teacher from '../components/teacher.svelte';
 import ThemePicker from '../components/theme_picker.svelte';
 import Visualizer from '../components/visualizer.svelte';
 
@@ -17,6 +18,7 @@ let started = false;
 
 {#if started}
     <Notes />
+    <Teacher />
 {/if}
 <main>
     <div id="controls">
