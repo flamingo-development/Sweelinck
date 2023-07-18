@@ -72,7 +72,7 @@ const newRandomNote = () => {
 
     currentNote = {
         note: noteName,
-        octave,
+        octave: Number(octave),
     }
 
     dispatch('teacher', currentNote)
@@ -88,7 +88,7 @@ const checkNote = (n) => {
         currentNote = newRandomNote()
     }
 
-    if (n === '-') {
+    if (n.note === '-') {
         return
     }
 
@@ -97,7 +97,7 @@ const checkNote = (n) => {
     const requirements = [
         note === currentNote.note,
         octave === currentNote.octave,
-        Date.now() - played.time > seconds * 1000,
+        // Date.now() - played.time > seconds * 1000,
     ]
 
     if (requirements.every(r => r)) {
@@ -116,4 +116,4 @@ const checkNote = (n) => {
 
 </script>
 
-<Event on:note={(e) => checkNote(e.note)} />
+<Event on:note={(e) => checkNote(e)} />

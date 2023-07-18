@@ -131,7 +131,7 @@ const helperBars = (note) => {
         transform="scale(1.2)"
         transform-origin="0px 240px"
         style={`translate: ${(getNoteHeight(teacherNote) < 100 ? 100 : 25)}px ${getNoteHeight(teacherNote) + (heightOffset) + 5}px`}
-        class={`b_inv f_med ${getNoteHeight(teacherNote) < 100 ? 'upper' : ''}`}
+        class={`outline ${getNoteHeight(teacherNote) < 100 ? 'upper' : ''}`}
     />
 </svg>
 
@@ -152,7 +152,13 @@ line {
 }
 
 .upper {
-    transform-origin: 49px 15px;
+    transform-origin: 50px 15px;
     transform: rotate(180deg);
+}
+
+.outline {
+    filter: drop-shadow(-1px -1px 0px var(--b_inv)) drop-shadow(1px -1px 0px var(--b_inv)) drop-shadow(1px 1px 0px var(--b_inv)) drop-shadow(-1px 1px 0px var(--b_inv));
+    fill: var(--background) !important;
+    color: var(--background);
 }
 </style>
