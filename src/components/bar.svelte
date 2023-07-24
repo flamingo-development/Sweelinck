@@ -5,6 +5,7 @@ import Event from "../events/event.svelte"
 
 let note;
 let teacherNote;
+let teacherEnabled = false;
 
 onMount(() => {
     window.TestFrequency = (hz) => {
@@ -84,6 +85,7 @@ const helperBars = (note) => {
 
 <Event on:note={(e) => note = e} />
 <Event on:teacher={(e) => teacherNote = e} />
+<Event on:teacher_enabled={(e) => teacherEnabled = e} />
 
 <svg id="bar" viewBox="0 0 180 300" xmlns="http://www.w3.org/2000/svg">
     <use 
@@ -104,7 +106,13 @@ const helperBars = (note) => {
             stroke-linecap="round"
         />
     {/each}
-    {#each [...helperBars(note), ...helperBars(teacherNote)] as height}
+    {#each [...helperBars(note), ...(() => {
+        if(teacherEnabled) {
+            return helperBars(teacherNote)
+        }else{
+            return []
+        }
+    })()] as height}
     <line 
         x1="105" 
         y1="{height + heightOffset}" 
@@ -124,6 +132,7 @@ const helperBars = (note) => {
         class={`b_inv ${getNoteHeight(note) < 100 ? 'upper' : ''}`}
     />
 
+    {#if teacherEnabled}
     <use
         href="/symbols.svg#quarter_note"
         x="70"
@@ -133,6 +142,7 @@ const helperBars = (note) => {
         style={`translate: ${(getNoteHeight(teacherNote) < 100 ? 100 : 25)}px ${getNoteHeight(teacherNote) + (heightOffset) + 5}px`}
         class={`outline ${getNoteHeight(teacherNote) < 100 ? 'upper' : ''}`}
     />
+    {/if}
 </svg>
 
 <style>
